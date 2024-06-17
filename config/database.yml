@@ -28,7 +28,5 @@ production:
   username: myapp
   password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
 
-development:
-  adapter: sqlite3
-  pool: 5
+
 
