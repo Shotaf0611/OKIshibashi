@@ -1,0 +1,50 @@
+<div class=morning>
+<div class=baka>
+<div class="sakes-container">
+<h3>投稿を検索</h3>
+<%= form_tag({controller:"sakes",action:"morning"}, method: :get) do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag '検索する'  %>
+<% end %>
+  <% @sakes.each do |t| %>
+    <% if t.category == "朝まで" %>
+    <div class="sake">
+    <div>
+    <h2>総合評価：
+    <span class="star-rating">
+       <span class="star-rating-front" style="width: <%= getPercent(t.level) %>%;">★★★★★</span>
+       <span class="star-rating-back">★★★★★</span>
+    </span> 
+    </h2>
+    </div>
+
+    <%= image_tag t.image_url, size: "250x200" if t.image? %>
+      <%= t.shop_name %>
+      <%= t.area %>
+      <%= t.genre %>
+      <%= t.cost %>
+      <%= t.time %>
+      <%= t.text %>
+      <% if user_signed_in? %>
+      <% if current_user.already_liked?(t) %>
+          <%= button_to sake_like_path(id: t.id, sake_id: t.id), method: :delete do %>
+            <i class="fas fa-heart"></i><%= t.likes.count %>
+          <% end %>
+      <% else %>
+          <%= button_to sake_likes_path(id: t.id, sake_id: t.id), method: :post do %>
+            <i class="far fa-heart"></i><%= t.likes.count %>
+          <% end %>
+      <% end %>
+  <% else %>
+  <i class="far fa-heart"></i><%= t.likes.count %>
+  <% end %>
+      <%= link_to "詳細へ", sake_path(t.id) %>
+      <%= link_to "編集する", edit_sake_path(t.id) %>
+      <%= button_to "削除する", sake_path(t.id), method: :delete %>
+    </div>
+    <% end %>
+  <% end %>
+</div>
+<%= link_to "一覧に戻る", sakes_path %>
+</div>
+</div>

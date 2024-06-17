@@ -1,0 +1,25 @@
+<div class="beer">
+  <div class="degawa">
+      <h1>OK-Ishibashi</h1>
+      <h3>一覧ページ</h3>
+      <div class="aiueo">
+        <%= link_to "新規投稿へ", new_sake_path %>
+        <%= link_to "朝まで", sakes_morning_path %>
+        <%= link_to "友人と", sakes_friend_path %>
+        <%= link_to "パートナーと", sakes_partner_path %>
+      </div>
+  </div>
+</div>
+
+<% if user_signed_in? %>
+  <%= link_to "マイページへ", user_path(current_user.id) %>
+<% end %>
+<% @sakes.each do |t| %>
+  <%= link_to t.user.name, user_path(t.user.id) %> 
+     <%= t.user.email %>
+<% end %>
+<% @sakes.each do |t| %>
+  # 省略
+  <%= image_tag t.user.image_url, size: "250x200" if t.user.image? %>
+  #省略
+<% end %>

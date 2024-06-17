@@ -1,0 +1,17 @@
+<%= form_for @sake do |f| %>
+    <%= f.label :shop_name %>
+    <%= f.label :area %>
+    <%= f.label :cost %>
+    <%= f.label :genre %>
+    <%= f.label :time %>
+    <%= f.label :text %>
+
+    <%= f.text_field :shop_name, :size => 140 %> 
+    <%= f.text_field :area, :size => 140 %> 
+    <%= f.text_field :cost, :size => 140 %> 
+    <%= f.text_field :genre, :size => 140 %> 
+    <%= f.text_field :time, :size => 140 %> 
+    <%= f.text_field :text, :size => 140 %> 
+
+    <%= f.submit "編集する" %>
+  <% end %>
