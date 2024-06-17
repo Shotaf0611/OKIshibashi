@@ -27,5 +27,8 @@ production:
   database: myapp_production
   username: myapp
   password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
-gem 'sqlite3'
+
+development:
+  adapter: sqlite3
+  pool: 5
 
